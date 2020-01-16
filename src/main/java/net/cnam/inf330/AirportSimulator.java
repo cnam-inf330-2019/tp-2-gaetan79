@@ -1,5 +1,6 @@
 package net.cnam.inf330;
 
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
@@ -16,8 +17,9 @@ public class AirportSimulator {
     private int planeCount;
     // TODO 1.a) Declare a PriorityQueue to store the flying planes waiting to land
     //private ... flyingPlanes;
+    private PriorityQueue<PlaneFuelComparator> flyingPlanes = new PriorityQueue<Plane>();
     // TODO 1.b) Declare a Queue (LinkedList) to store the landed planes waiting to take off
-    //private ... landedPlanes;
+    private Queue<Plane> landedPlanes;
 
     public AirportSimulator() {
         this.tick = 1;
@@ -32,7 +34,7 @@ public class AirportSimulator {
      * @param numNewTakingOff       The number of new planes on the ground waiting to take off
      * @param fuelCapacitiesLanding The starting fuel capacity of each plane in the air waiting to land
      */
-    public void simulateTurnWithNewPlanes(int numNewLanding, int numNewTakingOff, int[] fuelCapacitiesLanding) {
+    public void simulateTurnWithNewPlanes(int numNewLanding, int numNewTakingOff, int[] fuelCapacitiesLanding,int type) {
         System.out.println();
         System.out.println("=====================================================================");
         System.out.println("Turn " + this.tick + " : creating new planes");
@@ -40,11 +42,11 @@ public class AirportSimulator {
 
         // Step 1 : Insert new planes into the system
         for (int i = 0; i < numNewLanding; i++)
-            createPlane(fuelCapacitiesLanding[i], true);
+            createPlane(fuelCapacitiesLanding[i], true,type);
         for (int i = 0; i < numNewTakingOff; i++)
             // The fuel capacity of planes waiting to take off doesn't actually matter
             // since they are removed from the system once they take off
-            createPlane(Plane.MAX_FUEL_CAPACITY, false);
+            createPlane(Plane.MAX_FUEL_CAPACITY, false,type);
 
         this.simulateTurn();
     }
@@ -121,11 +123,13 @@ public class AirportSimulator {
      * @param flying
      */
     // TODO 4. Throw an InvalidFuelCapacityException when fuelCapacity is negative
-    private void createPlane(int fuelCapacity, boolean flying) {
+    private void createPlane(int fuelCapacity, boolean flying,int type) {
         String name = "Plane" + planeCount++;
-        Plane plane = new Plane(this.tick, name, flying, fuelCapacity);
+
+        Plane plane = new NormalPlane(this.tick, name, flying, fuelCapacity);
         System.out.println("Created plane : " + name + " (" + fuelCapacity + ", " +
                 (flying ? "air" : "ground") + ")");
+
         if (flying)
             flyingPlanes.add(plane);
         else
