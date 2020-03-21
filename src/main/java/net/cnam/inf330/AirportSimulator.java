@@ -8,7 +8,7 @@ import java.util.Queue;
 /**
  * Class for implementing the simulation system.
  */
-// TODO 6.a) Make AirportSimulator an Observer object
+// TODO FIXME 6.a) Make AirportSimulator an Observer object
 public class AirportSimulator {
 
     private final int NUM_RUNWAYS = 3;
@@ -17,6 +17,7 @@ public class AirportSimulator {
     private int planeCount;
     // TODO 1.a) Declare a PriorityQueue to store the flying planes waiting to land
     //private ... flyingPlanes;
+    // FIXME Should be a queue of Planes, the Comparator should be passed as parameter to constructor
     private PriorityQueue<PlaneFuelComparator> flyingPlanes = new PriorityQueue<Plane>();
     // TODO 1.b) Declare a Queue (LinkedList) to store the landed planes waiting to take off
     private Queue<Plane> landedPlanes;
@@ -24,7 +25,7 @@ public class AirportSimulator {
     public AirportSimulator() {
         this.tick = 1;
         this.planeCount = 0;
-        //...
+        //... FIXME Initialize Plane Queues here
     }
 
     /**
@@ -122,7 +123,7 @@ public class AirportSimulator {
      * @param fuelCapacity
      * @param flying
      */
-    // TODO 4. Throw an InvalidFuelCapacityException when fuelCapacity is negative
+    // TODO FIXME 4. Throw an InvalidFuelCapacityException when fuelCapacity is negative
     private void createPlane(int fuelCapacity, boolean flying,int type) {
         String name = "Plane" + planeCount++;
 

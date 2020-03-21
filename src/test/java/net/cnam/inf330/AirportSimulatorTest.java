@@ -10,10 +10,10 @@ import static org.junit.Assert.*;
  */
 public class AirportSimulatorTest {
 
-    // TODO 2. Write a method for testing the PriorityQueue
+    // TODO FIXME 2. Write a method for testing the PriorityQueue
     //...
 
-    /* TODO 5. Complete this method for testing the InvalidFuelCapacityException in the
+    /* TODO FIXME 5. Complete this method for testing the InvalidFuelCapacityException in the
         AirportSimulator::createPlane method
      */
     @Test

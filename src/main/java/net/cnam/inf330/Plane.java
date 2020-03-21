@@ -4,8 +4,8 @@ package net.cnam.inf330;
  * Class for implementing the planes operated by the simulation system.
  */
 // TODO 3.a) Make Plane an abstract class that implements the IPlane interface
-// TODO 6.a) Make Plane an Observable object
-public abstract class Plane {
+// TODO FIXME 6.a) Make Plane an Observable object
+public abstract class Plane { // FIXME Implement IPlane interface
 
     public static final int MAX_FUEL_CAPACITY = 5;
 
